@@ -17,6 +17,16 @@ Deck <- R6Class("Deck",
             "amarelo", 8
         ), ncol = 2, byrow = TRUE)
 
+        for (cor in c("azul", "vermelho", "verde", "amarelo")) {
+           
+          for (num in 1:9) {
+            
+
+
+          }
+
+        }
+
     },
     
     shuffleDeck = function() {
