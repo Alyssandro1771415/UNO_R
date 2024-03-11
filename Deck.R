@@ -10,6 +10,7 @@ Deck <- R6Class("Deck",
 
         # Aqui deixei só um exemplo, tentar formular pra ele criar as cartas automaticamente
         self$cards <- matrix(c(
+            "reverse", 11,
             "azul", 7,
             "vermelho", 11,
             "verde", 3,
@@ -18,7 +19,7 @@ Deck <- R6Class("Deck",
 
     },
     
-    shuffle = function() {
+    shuffleDeck = function() {
 
       self$cards <- self$cards[sample(nrow(self$cards)), ]
           
@@ -28,11 +29,26 @@ Deck <- R6Class("Deck",
 
         # Aqui fico no aguardo da classe Mão do Jogador para usar o método de inicialização dele para atribuir as cartas iniciais
 
+    },
+
+    setInitialCard = function(){
+
+      startercard <- self$cards[1, ]
+
+      if (startercard[2] == 10 || startercard[2] == 11) {
+        
+        self$shuffleDeck()
+        self$setInitialCard()
+        
+      } else {
+        
+        self$cards <- self$cards[-1,]
+        return(startercard)
+
+      }
+
     }
 
   )
 
 )
-
-deck <- Deck$new("Alyssandro", "Joana", "João", "Tássio")
-
