@@ -25,9 +25,19 @@ Deck <- R6Class("Deck",
           
     },
 
-    toDistributecards = function(player_1 = NA, player_2 = NA, player_3 = NA, player_4 = NA) {
+    toDistributeCards = function(player_1 = NA, player_2 = NA, player_3 = NA, player_4 = NA) {
 
-        # Aqui fico no aguardo da classe Mão do Jogador para usar o método de inicialização dele para atribuir as cartas iniciais
+        players <- c(player_1$cards, player_2$cards, player_3$cards, player_4$cards)
+
+        for (i in 1:7) {
+    
+          carta <- self$cards[i, ]
+
+          players[[i]]$cards <- rbind(players[[i]]$cards, carta)
+
+          self$cards <- self$cards[-i, ]
+
+        }
 
     },
 
