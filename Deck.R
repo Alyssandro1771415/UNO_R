@@ -67,8 +67,15 @@ Deck <- R6Class("Deck",
 
       }
 
-    }
+    },
 
+    reStackDeck = function(discardStack = NA) {
+      
+      if(nrow(self$cards) == 0) {
+        self$cards <- discardStack
+      }
+
+    }
   )
 
 )
