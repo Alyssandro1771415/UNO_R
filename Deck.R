@@ -17,16 +17,26 @@ Deck <- R6Class("Deck",
             "amarelo", 8
         ), ncol = 2, byrow = TRUE)
 
-        for (cor in c("azul", "vermelho", "verde", "amarelo")) {
-           
-          for (num in 1:9) {
-            
+    
+    generateDeck = function() {
+      # Cores disponíveis
+    cores <- c("azul", "vermelho", "verde", "amarelo")
 
+    # Números disponíveis
+    numeros <- 1:9
 
-          }
+    # Lista para armazenar os objetos Cards
+    objetos_cards <- list()
 
+    # Loop para criar os objetos
+    for (cor in cores) {
+        for (num in numeros) {
+            novo_card <- Cards$new(color = cor, number = num)
+            objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
         }
-
+    }
+    }
+    
     },
     
     shuffleDeck = function() {
