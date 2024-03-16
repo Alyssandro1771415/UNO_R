@@ -64,5 +64,10 @@ players_hand <- R6Class("players_hand",
            return(FALSE)
         }   
     }
+
+    artificialPlayer = function(){
+        
+    }
+
 )
 )
