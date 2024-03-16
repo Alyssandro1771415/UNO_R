@@ -63,11 +63,17 @@ players_hand <- R6Class("players_hand",
         else {
            return(FALSE)
         }   
-    }
+    },
 
     artificialPlayer = function(){
-        
+      
+      print(self$cards)
+      
+      
     }
+  )
+)
 
-)
-)
+player_hand1 <- players_hand$new()
+
+player_hand1$artificialPlayer()
