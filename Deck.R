@@ -24,6 +24,7 @@ Deck <- R6Class("Deck",
 
     # Números disponíveis
     numeros <- 1:9
+    numerosEspeciais <- 10:11
 
     # Lista para armazenar os objetos Cards
     objetos_cards <- list()
@@ -35,6 +36,12 @@ Deck <- R6Class("Deck",
             objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
         }
     }
+
+    for (cor in cores)
+        for (num in numerosEspeciais) {
+          novo_card <- Cards$new(color = cor, number = num)
+          objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
+        }
     }
     
     },
