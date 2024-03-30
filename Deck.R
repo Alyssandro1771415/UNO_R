@@ -11,55 +11,66 @@ Deck <- R6Class("Deck",
 
       # Aqui deixei só um exemplo, tentar formular pra ele criar as cartas automaticamente
       self$cards <- matrix(c(
-        "reverse", 11,
-        "azul", 7,
-        "vermelho", 11,
-        "verde", 3,
-        "amarelo", 8
+        "azul", 0,
+        "amarelo", 0,
+        "vermelho", 0,
+        "verde", 0,
+        "reverse Azul", 10,
+        "reverse Azul", 10,
+        "reverse Verde", 10,
+        "reverse Verde", 10,
+        "reverse Vermelho", 10,
+        "reverse Vermelho", 10,
+        "reverse Amarelo", 10,
+        "reverse Amarelo", 10,
+        "block Azul", 11,
+        "block Azul", 11,
+        "block Verde", 11,
+        "block Verde", 11,
+        "block Vermelho", 11,
+        "block Vermelho", 11,
+        "block Amarelo", 11,
+        "block Amarelo", 11,
+        "+2 Azul", 12,
+        "+2 Azul", 12,
+        "+2 Verde", 12,
+        "+2 Verde", 12,
+        "+2 Vermelho", 12,
+        "+2 Vermelho", 12,
+        "+2 Amarelo", 12,
+        "+2 Amarelo", 12,
+        "+4", 13,
+        "+4", 13,
+        "+4", 13,
+        "+4", 13,
+        "trocaCor", 14,
+        "trocaCor", 14,
+        "trocaCor", 14,
+        "trocaCor", 14
       ), ncol = 2, byrow = TRUE)
     },
-
+    
     generateDeck = function() {
-     # Cores disponíveis
-  cores <- c("azul", "vermelho", "verde", "amarelo")
-  especiais <- c("+4", "mudaCor")
+      # Cores disponíveis
+      cores <- c("azul", "vermelho", "verde", "amarelo")
 
-  # Números disponíveis
-  numeros <- 1:9
-  numeros_Especiais <- 10:11
+      # Números disponíveis
+      numeros <- 1:9
 
-  # Definindo a estrutura da matriz
-  numero_linhas <- 4 + length(especiais) * length(numeros_Especiais)
-  numero_colunas <- 2
+      # Loop para criar todas as cartas
+      for (i in 1:2) {
+        for (cor in cores) {
+          for (num in numeros) {
+              
+              nova_linha <- matrix(c(
+                cor, num
+              ), ncol = 2, byrow = TRUE)
 
-  # Criando a matriz vazia
-  matriz_cartas <- matrix(data = numeric(numero_linhas * numero_colunas), nrow = numero_linhas, ncol = numero_colunas)
+              self$cards <- rbind(self$cards, nova_linha)
 
-  # Linha atual na matriz
-  linha_atual <- 1
-
-  # Loop para criar todas as cartas
-  for (cor in cores) {
-    for (num in numeros) {
-      novo_card <- Cards$new(color = cor, number = num)
-      matriz_cartas[linha_atual, 1] <- novo_card$color
-      matriz_cartas[linha_atual, 2] <- novo_card$number
-      linha_atual <- linha_atual + 1
-    }
-  }
-
-  # Adicionando cartas especiais
-  for (especial in especiais) {
-    for (num in numeros_Especiais) {
-      novo_card <- Cards$new(color = especial, number = num)
-      matriz_cartas[linha_atual, 1] <- novo_card$color
-      matriz_cartas[linha_atual, 2] <- novo_card$number
-      linha_atual <- linha_atual + 1
-    }
-  }
-
-  # Retornando a matriz de cartas
-  return(matriz_cartas)
+          }
+        }
+      }
     },
     
     shuffleDeck = function() {

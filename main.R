@@ -6,3 +6,7 @@ source("PlayerHand.R")
 baralho <- Deck$new()
 
 baralho$generateDeck()
+
+baralho$shuffleDeck()
+
+print(baralho$cards)
