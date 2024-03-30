@@ -4,9 +4,14 @@ source("Deck.R")
 source("PlayerHand.R")
 
 baralho <- Deck$new()
-
+tabuleiro <- Board$new()
 baralho$generateDeck()
-
 baralho$shuffleDeck()
 
-print(baralho$cards)
+
+while(tabuleiro$Winner == FALSE){
+
+    print(tabuleiro$verifyTopDiscartStack())
+    break
+
+}
