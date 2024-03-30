@@ -3,4 +3,8 @@ source("Board.R")
 source("Deck.R")
 source("PlayerHand.R")
 
-MyHand <- PlayerHand$new()
+baralho <- Deck$new()
+
+baralho$generateDeck()
+
+

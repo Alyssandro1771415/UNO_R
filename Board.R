@@ -1,19 +1,15 @@
 library(R6)
 
 Board <- R6Class("Board",
-  
   public = list(
-
-
-    uno_deck_check <- function(deck) {
+    uno_deck_check = function(deck) {
       # Verifica se o baralho é uma lista
       if (!is.list(deck)) {
         stop("O baralho deve ser uma lista.")
       }
       
       # Define as cores válidas
-      acceptable_colors <- ("vermelho", "amarelo", "verde", "azul", "preto")
-      
+      acceptable_colors <- c("vermelho", "amarelo", "verde", "azul", "preto")      
       # Verifica se cada carta no baralho tem um número e uma cor
       for (card in deck) {
         if (!is.numeric(card$number)) {

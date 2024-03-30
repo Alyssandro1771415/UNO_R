@@ -1,4 +1,5 @@
 library(R6)
+source("Cards.R")
 
 Deck <- R6Class("Deck",
   
@@ -16,7 +17,7 @@ Deck <- R6Class("Deck",
         "verde", 3,
         "amarelo", 8
       ), ncol = 2, byrow = TRUE)
-    }
+    },
     
     generateDeck = function() {
       # Cores disponíveis
