@@ -6,5 +6,3 @@ source("PlayerHand.R")
 baralho <- Deck$new()
 
 baralho$generateDeck()
-
-

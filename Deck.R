@@ -18,38 +18,48 @@ Deck <- R6Class("Deck",
         "amarelo", 8
       ), ncol = 2, byrow = TRUE)
     },
-    
+
     generateDeck = function() {
-      # Cores disponíveis
-      cores <- c("azul", "vermelho", "verde", "amarelo")
-      especiais <- c("+4", "mudaCor")
+     # Cores disponíveis
+  cores <- c("azul", "vermelho", "verde", "amarelo")
+  especiais <- c("+4", "mudaCor")
 
-      # Números disponíveis
-      numeros <- 1:9
-      numerosEspeciais <- 10:11
+  # Números disponíveis
+  numeros <- 1:9
+  numeros_Especiais <- 10:11
 
-      # Lista para armazenar os objetos Cards
-      objetos_cards <- list()
+  # Definindo a estrutura da matriz
+  numero_linhas <- 4 + length(especiais) * length(numeros_Especiais)
+  numero_colunas <- 2
 
+  # Criando a matriz vazia
+  matriz_cartas <- matrix(data = numeric(numero_linhas * numero_colunas), nrow = numero_linhas, ncol = numero_colunas)
 
+  # Linha atual na matriz
+  linha_atual <- 1
 
-      # Loop para criar todas as cartas
-      for (i in 1:2) {
-        for (cor in cores) {
-          for (num in numeros) {
-              novo_card <- Cards$new(color = cor, number = num)
-              objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
-          }
-        }
+  # Loop para criar todas as cartas
+  for (cor in cores) {
+    for (num in numeros) {
+      novo_card <- Cards$new(color = cor, number = num)
+      matriz_cartas[linha_atual, 1] <- novo_card$color
+      matriz_cartas[linha_atual, 2] <- novo_card$number
+      linha_atual <- linha_atual + 1
+    }
+  }
 
-        for (especial in especiais) {
-          for (num in numerosEspeciais) {
-            novo_card <- Cards$new(color = especial, number = num)
-            objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
-          }
-        }
-      }
-    
+  # Adicionando cartas especiais
+  for (especial in especiais) {
+    for (num in numeros_Especiais) {
+      novo_card <- Cards$new(color = especial, number = num)
+      matriz_cartas[linha_atual, 1] <- novo_card$color
+      matriz_cartas[linha_atual, 2] <- novo_card$number
+      linha_atual <- linha_atual + 1
+    }
+  }
+
+  # Retornando a matriz de cartas
+  return(matriz_cartas)
     },
     
     shuffleDeck = function() {
