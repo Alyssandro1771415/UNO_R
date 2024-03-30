@@ -1,6 +1,6 @@
 library(R6)
 
-players_hand <- R6Class("players_hand",
+PlayerHand <- R6Class("PlayerHand",
     public = list(
         cards = NULL,
         initialize = function(){
