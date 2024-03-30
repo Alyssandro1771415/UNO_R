@@ -20,34 +20,34 @@ Deck <- R6Class("Deck",
     
     generateDeck = function() {
       # Cores disponíveis
-    cores <- c("azul", "vermelho", "verde", "amarelo")
-    especiais <- c("+4", "mudaCor")
+      cores <- c("azul", "vermelho", "verde", "amarelo")
+      especiais <- c("+4", "mudaCor")
 
-    # Números disponíveis
-    numeros <- 1:9
-    numerosEspeciais <- 10:11
+      # Números disponíveis
+      numeros <- 1:9
+      numerosEspeciais <- 10:11
 
-    # Lista para armazenar os objetos Cards
-    objetos_cards <- list()
+      # Lista para armazenar os objetos Cards
+      objetos_cards <- list()
 
 
 
-    # Loop para criar todas as cartas
-    for (i in 1:2) {
-      for (cor in cores) {
-        for (num in numeros) {
-            novo_card <- Cards$new(color = cor, number = num)
+      # Loop para criar todas as cartas
+      for (i in 1:2) {
+        for (cor in cores) {
+          for (num in numeros) {
+              novo_card <- Cards$new(color = cor, number = num)
+              objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
+          }
+        }
+
+        for (especial in especiais) {
+          for (num in numerosEspeciais) {
+            novo_card <- Cards$new(color = especial, number = num)
             objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
+          }
         }
       }
-
-      for (especial in especiais) {
-        for (num in numerosEspeciais) {
-          novo_card <- Cards$new(color = especial, number = num)
-          objetos_cards[[paste(cor, num, sep = "_")]] <- novo_card
-        }
-    }
-    }
     
     },
     
