@@ -4,9 +4,9 @@ source("Deck.R")
 source("PlayerHand.R")
 
 baralho <- Deck$new()
-tabuleiro <- Board$new()
 baralho$generateDeck()
 baralho$shuffleDeck()
+tabuleiro <- Board$new(baralho$setInitialCard())
 
 
 while(tabuleiro$Winner == FALSE){

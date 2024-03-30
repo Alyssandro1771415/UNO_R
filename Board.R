@@ -7,12 +7,9 @@ Board <- R6Class("Board",
     DiscartStackTop = NULL,
 
 
-    initialize = function() {
+    initialize = function(initialcard = NA) {
       self$DiscartStack <- matrix(c(
-        "azul", 0,
-        "amarelo", 0,
-        "vermelho", 0,
-        "verde", 0
+        initialcard
       ), ncol = 2, byrow = TRUE)
     },
 
