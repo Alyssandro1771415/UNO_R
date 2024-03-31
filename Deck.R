@@ -9,7 +9,6 @@ Deck <- R6Class("Deck",
 
     initialize = function() {
 
-      # Aqui deixei só um exemplo, tentar formular pra ele criar as cartas automaticamente
       self$cards <- matrix(c(
         "azul", 0,
         "amarelo", 0,
@@ -117,8 +116,10 @@ Deck <- R6Class("Deck",
       
       if(nrow(self$cards) == 0) {
         self$cards <- discardStack
+        # Descobrir como implementar!!!
+        #pilhaDescarte <- pilhaDescarte[0:-nrow(pilhaDescarte),]
       }
-
     }
+    
   )
 )
