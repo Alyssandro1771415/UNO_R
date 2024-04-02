@@ -116,7 +116,7 @@ Deck <- R6Class("Deck",
       
       if(nrow(self$cards) == 0) {
         self$cards <- discardStack
-        # Descobrir como implementar!!!
+        # Descobrir como implementar!!! - (testar com loop removendo carta a carta)
         #pilhaDescarte <- pilhaDescarte[0:-nrow(pilhaDescarte),]
       }
     }
