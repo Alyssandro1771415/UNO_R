@@ -3,13 +3,18 @@ source("Board.R")
 source("Deck.R")
 source("PlayerHand.R")
 
-baralho <- Deck$new()
-tabuleiro <- Board$new(baralho$setInitialCard())
+baralho <- Deck$new();
+baralho$generateDeck();
+baralho$shuffleDeck();
 
+
+initialCard <- baralho$setInitialCard();
+tabuleiro <- Board$new(initialCard[1], initialCard[2]);
 
 while(tabuleiro$Winner == FALSE){
 
-    print(tabuleiro$verifyTopDiscartStack())
-    break
+    print(tabuleiro$verifyTopDiscartStack());    
+    break;
+    
 
 }

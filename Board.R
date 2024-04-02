@@ -6,10 +6,9 @@ Board <- R6Class("Board",
     DiscartStack = NULL,
     DiscartStackTop = NULL,
 
-
-    initialize = function(initialcard = NA) {
+    initialize = function(initialCardColor = NA, initialCardNumber = NA) {
       self$DiscartStack <- matrix(c(
-        initialcard
+        initialCardColor, initialCardNumber
       ), ncol = 2, byrow = TRUE)
     },
 
