@@ -50,7 +50,7 @@ PlayerHand <- R6Class("PlayerHand",
     },
 
     blockCard = function(){
-
+        
     },
 
     reverseCard = function(){

@@ -98,7 +98,7 @@ Deck <- R6Class("Deck",
 
       startercard <- self$cards[1, ]
 
-      if (startercard[2] == 10 || startercard[2] == 11) {
+      if (startercard[2] == 10 || startercard[2] == 11 || startercard[2] == 12 || startercard[2] == 13 || startercard[2] == 14) {
         
         self$shuffleDeck()
         self$setInitialCard()
