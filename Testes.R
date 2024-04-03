@@ -3,35 +3,30 @@ source("Board.R")
 source("Deck.R")
 source("PlayerHand.R")
 
-baralho <- Deck$new()
-#baralho$generateDeck()
-#baralho$shuffleDeck()
-tabuleiro <- Board$new(baralho$setInitialCard())
+baralho <- Deck$new();
+baralho$generateDeck();
+baralho$shuffleDeck();
 
-pilhaDescarte <- matrix(c(
+initialCard <- baralho$setInitialCard();
+tabuleiro <- Board$new(initialCard[1], initialCard[2]);
 
-    "+2 Verde", 12,
-    "+2 Vermelho", 12,
-    "+2 Vermelho", 12,
-    "+2 Amarelo", 12,
-    "+2 Amarelo", 12,
-    "+4", 13,
-    "+4", 13
+player_1 <- PlayerHand$new("Alyssandro");
+player_2 <- PlayerHand$new("Maquina1");
+player_3 <- PlayerHand$new("Maquina2");
+player_4 <- PlayerHand$new("Maquina3");
 
-), ncol=2, byrow=TRUE)
-
-baralho$cards <- baralho$cards[-1,]
-
-print(baralho$cards) #Vazio
 
 while(tabuleiro$Winner == FALSE){
 
-    baralho$reStackDeck(pilhaDescarte)
-    print(baralho$cards)
-    print("-------------------==")
-    print(pilhaDescarte)
+    baralho$toDistributeCards(player_1, player_2, player_3, player_4);
 
-    #print(tabuleiro$verifyTopDiscartStack())
-    break
+    print(player_1$cards);
+    print(player_2$cards);
+    print(player_3$cards);
+    print(player_4$cards);
+    print(tabuleiro$DiscartStack);
+   
+    break;
+    
 
 }

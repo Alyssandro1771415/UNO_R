@@ -90,7 +90,6 @@ Deck <- R6Class("Deck",
 
         for(i in 1:7){
           self$cards <- self$cards[-1,]
-          print(self$cards[i,])
         }
         
       }
