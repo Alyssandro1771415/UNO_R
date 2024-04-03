@@ -54,16 +54,29 @@ PlayerHand <- R6Class("PlayerHand",
             return(list(DiscartStackTop = DiscartStackTop, playerHand = playerHand))
         },
 
-        blockCard = function(){
-            
+        blockCard = function(timeToPlay){
+            timeToPlay <- timeToPlay + 2;
         },
 
-        reverseCard = function(){
-            
+        reverseCard = function(order){
+            order <- -1;
         },
 
         changeColor = function(){
+            var <- readLine("Digite a cor: ");
+            
+            if(var == "amarelo") {
 
+            }
+            if(var == "azul") {
+                
+            }
+            if(var == "verde") {
+                
+            }
+            if(var == "vermelho") {
+                
+            }
         },
 
         verifyWin = function(){
