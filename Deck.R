@@ -80,18 +80,20 @@ Deck <- R6Class("Deck",
 
     toDistributeCards = function(player_1 = NA, player_2 = NA, player_3 = NA, player_4 = NA) {
 
-        players <- c(player_1$cards, player_2$cards, player_3$cards, player_4$cards)
+      players <- c(player_1, player_2, player_3, player_4);
+        
+      for(player in players){
+      
+        cartas <- self$cards[1:7, ]
 
-        for (i in 1:7) {
-    
-          carta <- self$cards[i, ]
+        player$cards <- cartas
 
-          players[[i]]$cards <- rbind(players[[i]]$cards, carta)
-
-          self$cards <- self$cards[-i, ]
-
+        for(i in 1:7){
+          self$cards <- self$cards[-1,]
+          print(self$cards[i,])
         }
-
+        
+      }
     },
 
     setInitialCard = function(){

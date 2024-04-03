@@ -8,7 +8,7 @@ PlayerHand <- R6Class("PlayerHand",
         cards = NULL,
         
         initialize = function(playerName = NA){
-            self$cards <- matrix(ncol = 2, nrow = 0)
+            self$cards <- matrix(ncol = 2, byrow = TRUE)
             colnames(self$cards) <- c("Tipo","Cor")
             self$name <- playerName;
         },
@@ -41,16 +41,17 @@ PlayerHand <- R6Class("PlayerHand",
         },
 
         playCard = function(playerHand, DiscartStackTop) {
-        # falta implementar o tabuleiro pra verificar a carta do topo
-        self$verifyWin()
 
-        if (verifyWin == TRUE) {
-            stop("O jogo terminou!")
-        }
+            self$verifyWin()
 
-        var <- as.integer(readLine("Digite o número da linha: "))
-        DiscartStackTop <- playerHand[-var]
-        return(list(DiscartStackTop = DiscartStackTop, playerHand = playerHand))
+            if (self$verifyWin() == TRUE) {
+
+                stop("O jogo terminou!")
+            }
+
+            var <- as.integer(readLine("Digite o número da linha: "))
+            DiscartStackTop <- playerHand[-var]
+            return(list(DiscartStackTop = DiscartStackTop, playerHand = playerHand))
         },
 
         blockCard = function(){
