@@ -40,7 +40,7 @@ PlayerHand <- R6Class("PlayerHand",
             )           
         },
 
-        playCard = function(playerHand, DiscartStackTop) {
+        playCard = function(DiscartStackTop) {
 
             self$verifyWin()
 
@@ -49,9 +49,21 @@ PlayerHand <- R6Class("PlayerHand",
                 stop("O jogo terminou!")
             }
 
-            var <- as.integer(readLine("Digite o número da linha: "))
-            DiscartStackTop <- playerHand[-var]
-            return(list(DiscartStackTop = DiscartStackTop, playerHand = playerHand))
+            var <- as.integer(readline(prompt="Digite o número da linha: "))
+
+            if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1)){
+
+                DiscartStackTop <- self$cards[var,]
+                self$cards[-var,]
+                return(DiscartStackTop)
+
+            } else{
+
+                self$playCard(DiscartStackTop);
+
+            }
+
+            
         },
 
         blockCard = function(timeToPlay){
