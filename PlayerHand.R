@@ -14,10 +14,13 @@ PlayerHand <- R6Class("PlayerHand",
         },
    
         #comprar carta do deck
-        drawCard = function(deck,quant){
+        drawCard = function(deck,quant, discardStack){
 
             if (quant > nrow(deck$cards)){
                 # falta implementar adicionar a pilha de descarte no deck menos a carta do topo e embaralhar
+
+                discartStackTop <- tail(discardStack, 1)
+                deck$cards <- deck$cards[]
 
             }
                     
@@ -40,7 +43,7 @@ PlayerHand <- R6Class("PlayerHand",
             )           
         },
 
-        playCard = function(DiscartStackTop) {
+        playCard = function(DiscartStackTop, deck, discardStack) {
 
             self$verifyWin()
 
@@ -51,6 +54,14 @@ PlayerHand <- R6Class("PlayerHand",
 
             var <- as.integer(readline(prompt="Digite o número da linha: "))
 
+            if(var == 0){
+
+                self$drawCard(deck, 1, discardStack)
+
+                return()
+                
+            }
+
             if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1)){
 
                 DiscartStackTop <- self$cards[var,]
@@ -59,7 +70,7 @@ PlayerHand <- R6Class("PlayerHand",
 
             } else{
 
-                self$playCard(DiscartStackTop);
+                self$playCard(DiscartStackTop, deck, discardStack);
 
             }
 
@@ -96,10 +107,9 @@ PlayerHand <- R6Class("PlayerHand",
                 card <- c(cor, 14);
                 return(card);
             },
-       {
-         print("Cor desconhecida.")
-       }
-)
+            {
+                print("Cor desconhecida.")
+            })
         },
 
         verifyWin = function(){

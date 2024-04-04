@@ -30,7 +30,7 @@ while(board$Winner == FALSE){
         print(board$DiscartStackTop);
         print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
         print(players[[timeToPlay]]$cards);
-        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop);
+        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack);
         board$addCardToDiscartStack(discartedCard)
         board$verifyTopDiscartStack()
 
@@ -47,7 +47,7 @@ while(board$Winner == FALSE){
         print(board$DiscartStackTop);
         print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
         print(players[[timeToPlay]]$cards);
-        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop);
+        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack);
         board$addCardToDiscartStack(discartedCard)
         board$verifyTopDiscartStack()
 
@@ -60,6 +60,5 @@ while(board$Winner == FALSE){
     }
 
     system("clear")
-    #break;
 
 }
