@@ -74,21 +74,32 @@ PlayerHand <- R6Class("PlayerHand",
             order <- -1;
         },
 
-        changeColor = function(){
-            var <- readLine("Digite a cor: ");
-            
-            if(var == "amarelo") {
-
-            }
-            if(var == "azul") {
-                
-            }
-            if(var == "verde") {
-                
-            }
-            if(var == "vermelho") {
-                
-            }
+        changeColor = function(cor){
+          switch  (cor,
+            "amarelo" = {
+                print("A cor é amarelo.");
+                card <- c(cor, 14);
+                return(card);
+            },
+            "verde" = {
+                print("A cor é verde.")
+                card <- c(cor, 14);
+                return(card);
+            },
+            "vermelho" = {
+                print("A cor é vermelho.")
+                card <- c(cor, 14);
+                return(card);
+            },
+            "azul" = {
+                print("A cor é azul.")
+                card <- c(cor, 14);
+                return(card);
+            },
+       {
+         print("Cor desconhecida.")
+       }
+)
         },
 
         verifyWin = function(){
