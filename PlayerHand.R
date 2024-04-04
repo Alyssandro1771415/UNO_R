@@ -54,7 +54,7 @@ PlayerHand <- R6Class("PlayerHand",
             if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1)){
 
                 DiscartStackTop <- self$cards[var,]
-                self$cards[-var,]
+                self$cards <- self$cards[-var,]
                 return(DiscartStackTop)
 
             } else{
