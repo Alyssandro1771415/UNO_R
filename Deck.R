@@ -10,10 +10,10 @@ Deck <- R6Class("Deck",
     initialize = function() {
 
       self$cards <- matrix(c(
-        "azul", 0,
-        "amarelo", 0,
-        "vermelho", 0,
-        "verde", 0,
+        "Azul", 0,
+        "Amarelo", 0,
+        "Vermelho", 0,
+        "Verde", 0,
         "Azul", "Reverse",
         "Azul", "Reverse",
         "Verde", "Reverse",
