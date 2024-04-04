@@ -51,7 +51,7 @@ Deck <- R6Class("Deck",
     
     generateDeck = function() {
       # Cores disponíveis
-      cores <- c("Azul", "Vermelho", "Verde", "Amarelo")
+      cores <- c("Azul", "Vermelho", "Verde", "Amarelo") 
 
       # Números disponíveis
       numeros <- 1:9

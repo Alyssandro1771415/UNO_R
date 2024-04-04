@@ -83,38 +83,69 @@ PlayerHand <- R6Class("PlayerHand",
         },
 
         blockCard = function(timeToPlay){
-            timeToPlay <- timeToPlay + 2;
+            timeToPlay <- timeToPlay + 1;
         },
 
         reverseCard = function(order){
-            order <- -1;
+            if (order == 1){order <- -1;}
+            
+            if (order == -1) {order <- 1;}
         },
 
         changeColor = function(cor){
           switch  (cor,
-            "amarelo" = {
+            "Amarelo" = {
                 print("A cor é amarelo.");
-                card <- c(cor, 14);
+                card <- c(cor, "trocaCor");
                 return(card);
             },
-            "verde" = {
+            "Verde" = {
                 print("A cor é verde.")
-                card <- c(cor, 14);
+                card <- c(cor, "trocaCor");
                 return(card);
             },
-            "vermelho" = {
+            "Vermelho" = {
                 print("A cor é vermelho.")
-                card <- c(cor, 14);
+                card <- c(cor, "trocaCor");
                 return(card);
             },
-            "azul" = {
+            "Azul" = {
                 print("A cor é azul.")
-                card <- c(cor, 14);
+                card <- c(cor, "trocaCor");
                 return(card);
             },
             {
                 print("Cor desconhecida.")
             })
+        },
+
+        useSpecialCard = function(card, deck, discardStack) {
+            if (any(card[2,] %in% 0:9)) {
+                return()
+            }
+
+            switch (card[2,],
+              "+2" = {
+                drawCard(deck, 2, discardStack);
+                return()
+              },
+              "+4" = {
+                drawCard(deck, 4, discardStack);
+                return();
+              },
+              "Block" = {
+                blockCard(timeToPlay);
+                return();
+              },
+              "Reverse" = {
+                reverseCard(order);
+                return();
+              },
+              "trocaCor" = {
+                trocaCor(cor);
+                return();
+              }
+            )
         },
 
         verifyWin = function(){
