@@ -67,6 +67,12 @@ PlayerHand <- R6Class("PlayerHand",
                 
             }
 
+            if (!(any(self$cards[var,2] %in% 0:9))) {
+                
+                self$useSpecialCard(self$cards[var,], deck, discardStack)
+
+            }
+
             if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1) || self$cards[as.integer(var),1] == "Preto"){
 
                 DiscartStackTop <- self$cards[var,]
@@ -120,29 +126,26 @@ PlayerHand <- R6Class("PlayerHand",
         },
 
         useSpecialCard = function(card, deck, discardStack) {
-            if (any(card[2,] %in% 0:9)) {
-                return()
-            }
 
-            switch (card[2,],
+            switch (card[2],
               "+2" = {
-                drawCard(deck, 2, discardStack);
+                self$drawCard(deck, 2, discardStack);
                 return()
               },
               "+4" = {
-                drawCard(deck, 4, discardStack);
+                self$drawCard(deck, 4, discardStack);
                 return();
               },
               "Block" = {
-                blockCard(timeToPlay);
+                self$blockCard(timeToPlay);
                 return();
               },
               "Reverse" = {
-                reverseCard(order);
+                self$reverseCard(order);
                 return();
               },
               "trocaCor" = {
-                trocaCor(cor);
+                self$changeColor(cor);
                 return();
               }
             )
