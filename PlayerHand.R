@@ -12,15 +12,15 @@ PlayerHand <- R6Class("PlayerHand",
             colnames(self$cards) <- c("Tipo","Cor")
             self$name <- playerName;
         },
-   
+
         #comprar carta do deck
-        drawCard = function(deck,quant, discardStack){
+        drawCard = function(deck, quant, discardStack){
 
             if (quant > nrow(deck$cards)){
-                # falta implementar adicionar a pilha de descarte no deck menos a carta do topo e embaralhar
 
                 discartStackTop <- tail(discardStack, 1)
                 deck$cards <- deck$cards[]
+                drawCard(deck, quant, discardStack)
 
             }
                     
@@ -28,7 +28,7 @@ PlayerHand <- R6Class("PlayerHand",
                 "1" = {
                     cards_taken <- deck$cards[1,]
                     deck$cards <- deck$cards[-1,]
-                    self$cards <- rbind(self$cards, cards_taken)
+                    self$cards <- rbind(self$cards, cards_taken[1:2])
                 },
                 "2" = {
                     cards_taken <- deck$cards[1:2]
@@ -40,7 +40,12 @@ PlayerHand <- R6Class("PlayerHand",
                     deck$cards <- deck$cards[-(1:4)]
                     self$cards <- rbind(self$cards, cards_taken)
                 }
-            )           
+            )
+            system("clear")
+            paste0("-----------", players[[timeToPlay]]$name, "------------")
+            print("Mão atual:")
+            print(self$cards)
+            Sys.sleep(3)        
         },
 
         playCard = function(DiscartStackTop, deck, discardStack) {
@@ -62,7 +67,7 @@ PlayerHand <- R6Class("PlayerHand",
                 
             }
 
-            if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1)){
+            if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1) || self$cards[as.integer(var),1] == "Preto"){
 
                 DiscartStackTop <- self$cards[var,]
                 self$cards <- self$cards[-var,]
