@@ -10,6 +10,13 @@ deck$generateDeck();
 deck$shuffleDeck();
 
 initialCard <- deck$setInitialCard();
+
+if(!grepl("^[0-9]+$", initialCard[2])){
+
+    initialCard <- deck$setInitialCard();
+
+}
+
 board <- Board$new(initialCard[1], initialCard[2]);
 board$verifyTopDiscartStack()
 
