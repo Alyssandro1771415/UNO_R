@@ -11,7 +11,7 @@ deck$shuffleDeck();
 
 initialCard <- deck$setInitialCard();
 
-if(!grepl("^[0-9]+$", initialCard[2])){
+while(!grepl("^[0-9]+$", initialCard[2])){
 
     initialCard <- deck$setInitialCard();
 

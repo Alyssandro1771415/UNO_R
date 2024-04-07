@@ -48,7 +48,7 @@ PlayerHand <- R6Class("PlayerHand",
             Sys.sleep(3)        
         },
 
-        playCard = function(DiscartStackTop, deck, discardStack) {
+        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer) {
 
             self$verifyWin()
 
@@ -69,7 +69,7 @@ PlayerHand <- R6Class("PlayerHand",
 
             if (!(any(self$cards[var,2] %in% 0:9))) {
                 
-                self$useSpecialCard(self$cards[var,], deck, discardStack)
+                self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer)
 
             }
 
@@ -125,15 +125,15 @@ PlayerHand <- R6Class("PlayerHand",
             })
         },
 
-        useSpecialCard = function(card, deck, discardStack) {
+        useSpecialCard = function(card, deck, discardStack, nextPlayer) {
 
             switch (card[2],
               "+2" = {
-                self$drawCard(deck, 2, discardStack);
+                nextPlayer$drawCard(deck, 2, discardStack);
                 return()
               },
               "+4" = {
-                self$drawCard(deck, 4, discardStack);
+                nextPlayer$drawCard(deck, 4, discardStack);
                 return();
               },
               "Block" = {

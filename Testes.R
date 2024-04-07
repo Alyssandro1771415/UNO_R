@@ -10,8 +10,14 @@ deck$generateDeck();
 deck$shuffleDeck();
 
 initialCard <- deck$setInitialCard();
+
+while(!grepl("^[0-9]+$", initialCard[2])){
+
+    initialCard <- deck$setInitialCard();
+
+}
+
 board <- Board$new(initialCard[1], initialCard[2]);
-#board$discardStack <- initialCard;
 board$verifyTopDiscartStack()
 
 player_1 <- PlayerHand$new("Alyssandro");
@@ -31,7 +37,7 @@ while(board$Winner == FALSE){
         print(board$DiscartStackTop);
         print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
         print(players[[timeToPlay]]$cards);
-        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack);
+        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]]);
         board$addCardToDiscartStack(discartedCard)
         board$verifyTopDiscartStack()
 
@@ -48,7 +54,7 @@ while(board$Winner == FALSE){
         print(board$DiscartStackTop);
         print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
         print(players[[timeToPlay]]$cards);
-        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$discardStack);
+        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]]);
         board$addCardToDiscartStack(discartedCard)
         board$verifyTopDiscartStack()
 
@@ -60,7 +66,6 @@ while(board$Winner == FALSE){
         
     }
 
-    #system("clear")
-    break
+    system("clear")
 
 }
