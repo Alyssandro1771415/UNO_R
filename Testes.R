@@ -34,36 +34,102 @@ while(board$Winner == FALSE){
 
     if(order == 1){
 
-        print(board$DiscartStackTop);
-        print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
-        print(players[[timeToPlay]]$cards);
-        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]]);
-        board$addCardToDiscartStack(discartedCard)
-        board$verifyTopDiscartStack()
+        if(class(board$DiscartStackTop) == "list"){
+            
+            print(board$DiscartStackTop[[1]]);
+            print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
+            print(players[[timeToPlay]]$cards);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            board$addCardToDiscartStack(discartedCard)
+            board$verifyTopDiscartStack()
+            
+            if((names(discartedCard))[2] == "specialActionBlock"){
+                timeToPlay <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionReverse"){
+                order <- discartedCard[[2]]
+            }
 
-        if(timeToPlay == 4){
-            timeToPlay <- 1;
+            if(timeToPlay == 4){
+                timeToPlay <- 1;
+            } else{
+                timeToPlay <- timeToPlay + 1;
+            }
         } else{
-            timeToPlay <- timeToPlay + 1;
+
+            print(board$DiscartStackTop);
+            print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
+            print(players[[timeToPlay]]$cards);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            board$addCardToDiscartStack(discartedCard)
+            board$verifyTopDiscartStack()
+            
+            if((names(discartedCard))[2] == "specialActionBlock"){
+                timeToPlay <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionReverse"){
+                order <- discartedCard[[2]]
+            }
+
+            if(timeToPlay >= 4){
+                timeToPlay <- 1;
+            } else{
+                timeToPlay <- timeToPlay + 1;
+            }
         }
-    
     }
 
     if(order == -1){
 
-        print(board$DiscartStackTop);
-        print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
-        print(players[[timeToPlay]]$cards);
-        discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]]);
-        board$addCardToDiscartStack(discartedCard)
-        board$verifyTopDiscartStack()
+        if(class(board$DiscartStackTop) == "list"){
+            
+            print(board$DiscartStackTop[[1]]);
+            print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
+            print(players[[timeToPlay]]$cards);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            board$addCardToDiscartStack(discartedCard)
+            board$verifyTopDiscartStack()
+            
+            if((names(discartedCard))[2] == "specialActionBlock"){
+                timeToPlay <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionReverse"){
+                order <- discartedCard[[2]]
+            }
 
-        if(timeToPlay == 1){
-            timeToPlay <- 4;
+            if(timeToPlay == 4){
+                timeToPlay <- 1;
+            } else{
+                timeToPlay <- timeToPlay + 1;
+            }
+
+            next;
+
         } else{
-            timeToPlay <- timeToPlay - 1;
+
+            print(board$DiscartStackTop);
+            print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
+            print(players[[timeToPlay]]$cards);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            board$addCardToDiscartStack(discartedCard)
+            board$verifyTopDiscartStack()
+            
+            if((names(discartedCard))[2] == "specialActionBlock"){
+                timeToPlay <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionReverse"){
+                order <- discartedCard[[2]]
+            }
+
+            if(timeToPlay <= 1){
+                timeToPlay <- 4;
+            } else{
+                timeToPlay <- timeToPlay - 1;
+            }
+
+            next;
+            
         }
-        
     }
 
     system("clear")

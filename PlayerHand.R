@@ -22,16 +22,17 @@ PlayerHand <- R6Class("PlayerHand",
                 drawCard(deck, quant, discardStack)
 
             }
-
-            print("Estou na drawcards")
-            print(quant)
-            Sys.sleep(3)
                     
             switch(as.character(quant),
                 "1" = {
                     cards_taken <- deck$cards[1,]
                     deck$cards <- deck$cards[-1,]
                     self$cards <- rbind(self$cards, cards_taken[1:2])
+                    system("clear")
+                    paste0("-----------", players[[timeToPlay]]$name, "------------")
+                    print("Mão atual:")
+                    print(self$cards)
+                    Sys.sleep(3)   
                 },
                 "2" = {
                     cards_taken <- deck$cards[1:2,]
@@ -44,14 +45,10 @@ PlayerHand <- R6Class("PlayerHand",
                     self$cards <- rbind(self$cards, cards_taken[1:4,])
                 }
             )
-            system("clear")
-            paste0("-----------", players[[timeToPlay]]$name, "------------")
-            print("Mão atual:")
-            print(self$cards)
-            Sys.sleep(3)        
+     
         },
 
-        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer) {
+        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer, timeToPlay) {
 
             self$verifyWin()
 
@@ -70,17 +67,28 @@ PlayerHand <- R6Class("PlayerHand",
                 
             }
 
-            if (!(any(self$cards[var,2] %in% 0:9))) {
-
-                self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer)
-
-            }
-
-            if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1) || self$cards[as.integer(var),1] == "Preto"){
+            if(self$cards[as.integer(var),1] == head(DiscartStackTop,1) || self$cards[as.integer(var),2] == tail(DiscartStackTop, 1) || self$cards[as.integer(var),1] == "Preto" || tail(DiscartStackTop, 1) == "Preto"){
 
                 DiscartStackTop <- self$cards[var,]
+                actionOfTheCard <- NULL
+
+                if (!(any(self$cards[var,2] %in% 0:9))) {
+
+                    actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay)
+
+                }
+                
+                if(self$cards[var, 2] == "Block"){
+                    self$cards <- self$cards[-var,]
+                    return(list(topDiscart = DiscartStackTop, specialActionBlock = actionOfTheCard))
+                }
+                if(self$cards[var, 2] == "Reverse"){
+                    self$cards <- self$cards[-var,]
+                    return(list(topDiscart = DiscartStackTop, specialActionReverse = actionOfTheCard))
+                }
+
                 self$cards <- self$cards[-var,]
-                return(DiscartStackTop)
+                return(list(topDiscart = DiscartStackTop, actionOfTheCard = actionOfTheCard))
 
             } else{
 
@@ -93,12 +101,19 @@ PlayerHand <- R6Class("PlayerHand",
 
         blockCard = function(timeToPlay){
             timeToPlay <- timeToPlay + 1;
+            return(timeToPlay)
         },
 
         reverseCard = function(order){
-            if (order == 1){order <- -1;}
+            if (order == 1){
+                order <- -1
+                return(order)
+            }
             
-            if (order == -1) {order <- 1;}
+            if (order == -1) {
+                order <- 1
+                return(order)
+            }
         },
 
         changeColor = function(cor){
@@ -128,7 +143,7 @@ PlayerHand <- R6Class("PlayerHand",
             })
         },
 
-        useSpecialCard = function(card, deck, discardStack, nextPlayer) {
+        useSpecialCard = function(card, deck, discardStack, nextPlayer, timeToPlay) {
 
             switch (card[2],
               "+2" = {
@@ -136,17 +151,16 @@ PlayerHand <- R6Class("PlayerHand",
                 return()
               },
               "+4" = {
-                #----- Até aqui
                 nextPlayer$drawCard(deck, 4, discardStack);
                 return();
               },
               "Block" = {
-                self$blockCard(timeToPlay);
-                return();
+                timeToPlay <- self$blockCard(timeToPlay);
+                return(timeToPlay)
               },
               "Reverse" = {
-                self$reverseCard(order);
-                return();
+                reverter <- self$reverseCard(order);
+                return(reverter);
               },
               "trocaCor" = {
                 self$changeColor(cor);
