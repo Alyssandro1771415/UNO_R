@@ -22,8 +22,12 @@ PlayerHand <- R6Class("PlayerHand",
                 drawCard(deck, quant, discardStack)
 
             }
+
+            print("Estou na drawcards")
+            print(quant)
+            Sys.sleep(3)
                     
-            switch(quant,
+            switch(as.character(quant),
                 "1" = {
                     cards_taken <- deck$cards[1,]
                     deck$cards <- deck$cards[-1,]
@@ -31,14 +35,13 @@ PlayerHand <- R6Class("PlayerHand",
                 },
                 "2" = {
                     cards_taken <- deck$cards[1:2,]
-                    print(cards_taken)
                     deck$cards <- deck$cards[-(1:2),]
                     self$cards <- rbind(self$cards, cards_taken[1:2,])
                 },
                 "4" = {
                     cards_taken <- deck$cards[1:4,]
                     deck$cards <- deck$cards[-(1:4),]
-                    self$cards <- rbind(self$cards, cards_taken[1:2,])
+                    self$cards <- rbind(self$cards, cards_taken[1:4,])
                 }
             )
             system("clear")
@@ -68,7 +71,7 @@ PlayerHand <- R6Class("PlayerHand",
             }
 
             if (!(any(self$cards[var,2] %in% 0:9))) {
-                
+
                 self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer)
 
             }
@@ -133,6 +136,7 @@ PlayerHand <- R6Class("PlayerHand",
                 return()
               },
               "+4" = {
+                #----- Até aqui
                 nextPlayer$drawCard(deck, 4, discardStack);
                 return();
               },
