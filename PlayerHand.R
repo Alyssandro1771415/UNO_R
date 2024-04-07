@@ -180,6 +180,25 @@ PlayerHand <- R6Class("PlayerHand",
             else {
                 return(FALSE)
             }   
+        },
+
+        IA = function(DiscardStackTop) {
+            validas <- which(self$cards[,1] == DiscardStackTop[1] & self$cards[,2] == DiscardStackTop[2])
+            especiais <- which(self$cards[,2] %in% c("+2", "+4", "Block", "Reverse", "trocaCor"))
+
+            if (length(especiais) > 0) {
+                return(self$playCard(self$cards[especiais[1],], DiscardStackTop))
+            }
+
+            if (length(validas) > 0) {
+                return(self$playCard(self$cards[validas[1],], DiscardStackTop))
+            }
+
+
+            self$drawCard(deck, 1, discardStack)
+            return(NULL)
         }
+
+
     )
 )
