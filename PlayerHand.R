@@ -13,7 +13,6 @@ PlayerHand <- R6Class("PlayerHand",
             self$name <- playerName;
         },
 
-        #comprar carta do deck
         drawCard = function(deck, quant, discardStack){
 
             if (quant > nrow(deck$cards)){
@@ -31,14 +30,15 @@ PlayerHand <- R6Class("PlayerHand",
                     self$cards <- rbind(self$cards, cards_taken[1:2])
                 },
                 "2" = {
-                    cards_taken <- deck$cards[1:2]
-                    deck$cards <- deck$cards[-(1:2)]
-                    self$cards <- rbind(self$cards, cards_taken[1:2])
+                    cards_taken <- deck$cards[1:2,]
+                    print(cards_taken)
+                    deck$cards <- deck$cards[-(1:2),]
+                    self$cards <- rbind(self$cards, cards_taken[1:2,])
                 },
                 "4" = {
-                    cards_taken <- deck$cards[1:4]
-                    deck$cards <- deck$cards[-(1:4)]
-                    self$cards <- rbind(self$cards, cards_taken[1:2])
+                    cards_taken <- deck$cards[1:4,]
+                    deck$cards <- deck$cards[-(1:4),]
+                    self$cards <- rbind(self$cards, cards_taken[1:2,])
                 }
             )
             system("clear")
