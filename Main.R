@@ -34,12 +34,20 @@ while(board$Winner == FALSE){
 
     if(order == 1){
 
+        nextPlayer <- NULL
+
+        if(timeToPlay+1 > 3){
+            nextPlayer <- 1
+        } else{
+            nextPlayer <- timeToPlay+1
+        }
+
         if(class(board$DiscartStackTop) == "list"){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -51,7 +59,6 @@ while(board$Winner == FALSE){
                 } else{
                     timeToPlay <- timeToPlay + 1;
                 }
-                print("Entrei onde nao devia")
                 system("clear")
                 next;   
             }
@@ -60,8 +67,10 @@ while(board$Winner == FALSE){
                 timeToPlay <- discartedCard[[2]]
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                print("entrei numa acao2")
                 order <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionChangeColor"){
+                board$DiscartStackTop <- discartedCard[[2]]
             }
 
             if(timeToPlay >= 4){
@@ -78,7 +87,7 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -91,7 +100,6 @@ while(board$Winner == FALSE){
                 } else{
                     timeToPlay <- timeToPlay + 1;
                 }
-                print("Entrei onde nao devia")
                 system("clear")
                 next;   
             }
@@ -101,8 +109,10 @@ while(board$Winner == FALSE){
                 timeToPlay <- discartedCard[[2]]
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                print("entrei numa acao2")
                 order <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionChangeColor"){
+                board$DiscartStackTop <- discartedCard[[2]]
             }
 
             if(timeToPlay >= 4){
@@ -119,12 +129,20 @@ while(board$Winner == FALSE){
 
     if(order == -1){
 
+        nextPlayer <- NULL
+
+        if(timeToPlay-1 < 1){
+            nextPlayer <- 4
+        } else{
+            nextPlayer <- timeToPlay-1
+        }
+
         if(class(board$DiscartStackTop) == "list"){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -137,7 +155,6 @@ while(board$Winner == FALSE){
                 } else{
                     timeToPlay <- timeToPlay - 1;
                 }
-                print("Entrei onde nao devia")
                 system("clear")
                 next;   
             }
@@ -146,8 +163,10 @@ while(board$Winner == FALSE){
                 timeToPlay <- discartedCard[[2]]
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                print("entrei numa acao2")
                 order <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionChangeColor"){
+                board$DiscartStackTop <- discartedCard[[2]]
             }
 
             if(timeToPlay <= 1){
@@ -164,7 +183,7 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[timeToPlay+1]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -186,8 +205,10 @@ while(board$Winner == FALSE){
                 timeToPlay <- discartedCard[[2]]
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                print("entrei numa acao2")
                 order <- discartedCard[[2]]
+            }
+            if((names(discartedCard))[2] == "specialActionChangeColor"){
+                board$DiscartStackTop <- discartedCard[[2]]
             }
 
             if(timeToPlay <= 1){

@@ -86,6 +86,9 @@ PlayerHand <- R6Class("PlayerHand",
                     self$cards <- self$cards[-var,]
                     return(list(topDiscart = DiscartStackTop, specialActionReverse = actionOfTheCard))
                 }
+                if(self$cards[var, 2] == "trocaCor"){
+                    return(list(topDiscart = DiscartStackTop, specialActionChangeColor = actionOfTheCard))
+                }
 
                 self$cards <- self$cards[-var,]
                 return(list(topDiscart = DiscartStackTop, actionOfTheCard = actionOfTheCard))
@@ -116,31 +119,41 @@ PlayerHand <- R6Class("PlayerHand",
             }
         },
 
-        changeColor = function(cor){
-          switch  (cor,
-            "Amarelo" = {
-                print("A cor é amarelo.");
-                card <- c(cor, "trocaCor");
-                return(card);
-            },
-            "Verde" = {
-                print("A cor é verde.")
-                card <- c(cor, "trocaCor");
-                return(card);
-            },
-            "Vermelho" = {
-                print("A cor é vermelho.")
-                card <- c(cor, "trocaCor");
-                return(card);
-            },
-            "Azul" = {
-                print("A cor é azul.")
-                card <- c(cor, "trocaCor");
-                return(card);
-            },
-            {
-                print("Cor desconhecida.")
-            })
+        changeColor = function(){
+
+            print("Amarelo: 1")
+            print("Verde: 2")
+            print("Vermelho: 3")
+            print("Azul: 4")
+
+            cor <- as.character(readline(prompt="Digite o número da cor: "))
+        
+            switch  (cor,
+                "1" = {
+                    print("A cor é amarelo.");
+                    card <- c("Amarelo", "trocaCor");
+                    return(card);
+                },
+                "2" = {
+                    print("A cor é verde.");
+                    card <- c("Verde", "trocaCor");
+                    return(card);
+                },
+                "3" = {
+                    print("A cor é vermelho.");
+                    card <- c("Vermelho", "trocaCor");
+                    return(card);
+                },
+                "4" = {
+                    print("A cor é azul.");
+                    card <- c("Azul", "trocaCor");
+                    return(card);
+                },
+                {
+                    print("Cor desconhecida.");
+                    self$changeColor();
+                }
+            )
         },
 
         useSpecialCard = function(card, deck, discardStack, nextPlayer, timeToPlay) {
@@ -163,8 +176,8 @@ PlayerHand <- R6Class("PlayerHand",
                 return(reverter);
               },
               "trocaCor" = {
-                self$changeColor(cor);
-                return();
+                carta <- self$changeColor();
+                return(carta);
               }
             )
         },
@@ -183,7 +196,7 @@ PlayerHand <- R6Class("PlayerHand",
         },
 
         IA = function(DiscardStackTop) {
-            validas <- which(self$cards[,1] == DiscardStackTop[1] & self$cards[,2] == DiscardStackTop[2])
+            validas <- which(self$cards[,1] == DiscardStackTop[1] || self$cards[,2] == DiscardStackTop[2])
             especiais <- which(self$cards[,2] %in% c("+2", "+4", "Block", "Reverse", "trocaCor"))
 
             if (length(especiais) > 0) {
@@ -198,7 +211,5 @@ PlayerHand <- R6Class("PlayerHand",
             self$drawCard(deck, 1, discardStack)
             return(NULL)
         }
-
-
     )
 )
