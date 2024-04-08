@@ -37,7 +37,7 @@ while(board$Winner == FALSE){
 
     if(order == 1){
 
-        nextPlayer <- NULL
+        nextPlayer <- NULL;
 
         if(timeToPlay+1 > 3){
             nextPlayer <- 1
@@ -73,8 +73,14 @@ while(board$Winner == FALSE){
                 }
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                order <- discartedCard[[2]]
-                timeToPlay <- timeToPlay - 2
+                if(timeToPlay == 1){
+                    order <- discartedCard[[2]]
+                    order <- discartedCard[[2]]
+                    timeToPlay <- 4
+                } else{
+                    order <- discartedCard[[2]]
+                    timeToPlay <- timeToPlay - 2
+                }
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -119,8 +125,13 @@ while(board$Winner == FALSE){
                 }
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                order <- discartedCard[[2]]
-                timeToPlay <- timeToPlay - 2
+                if(timeToPlay == 1){
+                    order <- discartedCard[[2]]
+                    timeToPlay <- 3
+                } else{
+                    order <- discartedCard[[2]]
+                    timeToPlay <- timeToPlay - 2
+                }
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -162,7 +173,7 @@ while(board$Winner == FALSE){
             if(class(discartedCard) == "NULL"){
 
                 if(timeToPlay <= 1){
-                    timeToPlay <- 4;
+                    timeToPlay <- 3;
                 } else{
                     timeToPlay <- timeToPlay - 1;
                 }
@@ -177,8 +188,13 @@ while(board$Winner == FALSE){
                 }
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                order <- discartedCard[[2]]
-                timeToPlay <- timeToPlay + 2
+                if(timeToPlay == 4){
+                    order <- discartedCard[[2]]
+                    timeToPlay <- 2
+                }else{
+                    order <- discartedCard[[2]]
+                    timeToPlay <- timeToPlay + 2
+                }
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -221,8 +237,13 @@ while(board$Winner == FALSE){
                 }
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
-                order <- discartedCard[[2]]
-                timeToPlay <- timeToPlay + 2
+                if(timeToPlay == 4){
+                    order <- discartedCard[[2]]
+                    timeToPlay <- 2
+                }else{
+                    order <- discartedCard[[2]]
+                    timeToPlay <- timeToPlay + 2
+                }
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -233,6 +254,8 @@ while(board$Winner == FALSE){
             } else{
                 timeToPlay <- timeToPlay - 1;
             }
+
+            board$Winner <- players[[timeToPlay]]$verifyWin();
 
             system("clear")
             next;

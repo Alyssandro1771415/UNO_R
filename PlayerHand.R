@@ -62,7 +62,7 @@ PlayerHand <- R6Class("PlayerHand",
 
                 var <- self$IA(DiscartStackTop)
                 print(self$cards[var,])
-                Sys.sleep(5)
+                Sys.sleep(3)
 
             }  else{
 
@@ -118,7 +118,7 @@ PlayerHand <- R6Class("PlayerHand",
 
             } else{
 
-                self$playCard(DiscartStackTop, deck, discardStack);
+                self$playCard(DiscartStackTop, deck, discardStack, nextPlayer, timeToPlay, player_name);
 
             }
 
@@ -159,7 +159,7 @@ PlayerHand <- R6Class("PlayerHand",
             }
 
             print(cor)
-            Sys.sleep(5)
+            Sys.sleep(3)
 
             switch  (cor,
                 "1" = {
@@ -236,12 +236,12 @@ PlayerHand <- R6Class("PlayerHand",
                             self$cards[, 2] %in% c("+4", "trocaCor"))
 
             if (length(especiais) > 0) {
-                Sys.sleep(5)
+                Sys.sleep(3)
                 return(especiais[1])
             }
 
             if (length(validas) > 0) {
-                Sys.sleep(5)
+                Sys.sleep(3)
                 return(validas[1])
             }
 
