@@ -20,7 +20,10 @@ while(!grepl("^[0-9]+$", initialCard[2])){
 board <- Board$new(initialCard[1], initialCard[2]);
 board$verifyTopDiscartStack()
 
-player_1 <- PlayerHand$new("Alyssandro");
+playerName <- as.character(readline(prompt="Digite seu nome: "))
+system("clear")
+
+player_1 <- PlayerHand$new(playerName);
 player_2 <- PlayerHand$new("Maquina1");
 player_3 <- PlayerHand$new("Maquina2");
 player_4 <- PlayerHand$new("Maquina3");
