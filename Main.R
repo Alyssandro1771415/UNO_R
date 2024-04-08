@@ -71,6 +71,7 @@ while(board$Winner == FALSE){
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 order <- discartedCard[[2]]
+                timeToPlay <- timeToPlay - 2
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -113,6 +114,7 @@ while(board$Winner == FALSE){
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 order <- discartedCard[[2]]
+                timeToPlay <- timeToPlay - 2
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -167,6 +169,7 @@ while(board$Winner == FALSE){
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 order <- discartedCard[[2]]
+                timeToPlay <- timeToPlay + 2
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
@@ -209,6 +212,7 @@ while(board$Winner == FALSE){
             }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 order <- discartedCard[[2]]
+                timeToPlay <- timeToPlay + 2
             }
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
