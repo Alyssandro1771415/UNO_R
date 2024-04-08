@@ -13,7 +13,7 @@ PlayerHand <- R6Class("PlayerHand",
             self$name <- playerName;
         },
 
-        drawCard = function(deck, quant, discardStack){
+        drawCard = function(deck, quant, discardStack, IA){
 
             if (quant > nrow(deck$cards)){
 
@@ -43,6 +43,7 @@ PlayerHand <- R6Class("PlayerHand",
                     cards_taken <- deck$cards[1:4,]
                     deck$cards <- deck$cards[-(1:4),]
                     self$cards <- rbind(self$cards, cards_taken[1:4,])
+                    return(self$changeColor(IA, "+4"))
                 }
             )
      
@@ -93,7 +94,9 @@ PlayerHand <- R6Class("PlayerHand",
                         actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay, TRUE)
                     
                     } else{
+
                         actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay, FALSE)
+                    
                     }
                 }
                 
@@ -105,13 +108,12 @@ PlayerHand <- R6Class("PlayerHand",
                     self$cards <- self$cards[-var,]
                     return(list(topDiscart = DiscartStackTop, specialActionReverse = actionOfTheCard))
                 }
-                if(self$cards[var, 2] == "trocaCor"){
+                if(self$cards[var, 2] == "trocaCor" || self$cards[var, 1] == "Preto"){
                     self$cards <- self$cards[-var,]
                     return(list(topDiscart = DiscartStackTop, specialActionChangeColor = actionOfTheCard))
                 }
 
                 self$cards <- self$cards[-var,]
-                # ------------- Preto trocaCor não está chegando aqui---------------
                 return(list(topDiscart = DiscartStackTop, actionOfTheCard = actionOfTheCard))
 
             } else{
@@ -140,7 +142,7 @@ PlayerHand <- R6Class("PlayerHand",
             }
         },
 
-        changeColor = function(IA){
+        changeColor = function(IA, whoCall){
 
             if(IA == TRUE){
 
@@ -157,32 +159,32 @@ PlayerHand <- R6Class("PlayerHand",
             }
 
             print(cor)
-            Sys.sleep(10)
+            Sys.sleep(5)
 
             switch  (cor,
                 "1" = {
                     print("A cor é amarelo.");
-                    card <- c("Amarelo", "trocaCor");
+                    card <- c("Amarelo", whoCall);
                     return(card);
                 },
                 "2" = {
                     print("A cor é verde.");
-                    card <- c("Verde", "trocaCor");
+                    card <- c("Verde", whoCall);
                     return(card);
                 },
                 "3" = {
                     print("A cor é vermelho.");
-                    card <- c("Vermelho", "trocaCor");
+                    card <- c("Vermelho", whoCall);
                     return(card);
                 },
                 "4" = {
                     print("A cor é azul.");
-                    card <- c("Azul", "trocaCor");
+                    card <- c("Azul", whoCall);
                     return(card);
                 },
                 {
                     print("Cor desconhecida.");
-                    self$changeColor();
+                    self$changeColor(IA, whoCall);
                 }
             )
         },
@@ -195,8 +197,8 @@ PlayerHand <- R6Class("PlayerHand",
                 return()
               },
               "+4" = {
-                nextPlayer$drawCard(deck, 4, discardStack);
-                return();
+                actionOfTheCard <- nextPlayer$drawCard(deck, 4, discardStack, IA);
+                return(actionOfTheCard);
               },
               "Block" = {
                 timeToPlay <- self$blockCard(timeToPlay);
@@ -207,7 +209,7 @@ PlayerHand <- R6Class("PlayerHand",
                 return(reverter);
               },
               "trocaCor" = {
-                carta <- self$changeColor(IA);
+                carta <- self$changeColor(IA, "trocaCor");
                 return(carta);
               }
             )

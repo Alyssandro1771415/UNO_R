@@ -210,8 +210,6 @@ while(board$Winner == FALSE){
                 } else{
                     timeToPlay <- timeToPlay - 1;
                 }
-                print("Entrei onde nao devia")
-                system("clear")
                 next;   
             }
 
