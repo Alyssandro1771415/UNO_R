@@ -256,6 +256,9 @@ while(board$Winner == FALSE){
             }
 
             board$Winner <- players[[timeToPlay]]$verifyWin();
+            if(nrow(players[[timeToPlay]]) == 1){
+                Sys.sleep(3)
+            }
 
             system("clear")
             next;

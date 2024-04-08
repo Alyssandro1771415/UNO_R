@@ -58,6 +58,8 @@ PlayerHand <- R6Class("PlayerHand",
                 stop("O jogo terminou!")
             }
 
+            print("================================")
+
             if(self$name != player_name){
 
                 var <- self$IA(DiscartStackTop)
