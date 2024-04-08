@@ -105,11 +105,13 @@ PlayerHand <- R6Class("PlayerHand",
                     self$cards <- self$cards[-var,]
                     return(list(topDiscart = DiscartStackTop, specialActionReverse = actionOfTheCard))
                 }
-                if(self$cards[var, 2] == "trocaCor" || self$cards[var, 1] == "Preto"){
+                if(self$cards[var, 2] == "trocaCor"){
+                    self$cards <- self$cards[-var,]
                     return(list(topDiscart = DiscartStackTop, specialActionChangeColor = actionOfTheCard))
                 }
 
                 self$cards <- self$cards[-var,]
+                # ------------- Preto trocaCor não está chegando aqui---------------
                 return(list(topDiscart = DiscartStackTop, actionOfTheCard = actionOfTheCard))
 
             } else{
@@ -225,11 +227,11 @@ PlayerHand <- R6Class("PlayerHand",
         },
 
         IA = function(DiscardStackTop) {
-        validas <- which(self$cards[, 1] == DiscardStackTop[1] | self$cards[, 2] == DiscardStackTop[2])
-        especiais <- which((self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "+2") |
-                        (self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "Block") |
-                        (self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "Reverse") |
-                        self$cards[, 2] %in% c("+4", "trocaCor"))
+            validas <- which(self$cards[, 1] == DiscardStackTop[1] | self$cards[, 2] == DiscardStackTop[2])
+            especiais <- which((self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "+2") |
+                            (self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "Block") |
+                            (self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "Reverse") |
+                            self$cards[, 2] %in% c("+4", "trocaCor"))
 
             if (length(especiais) > 0) {
                 Sys.sleep(5)
