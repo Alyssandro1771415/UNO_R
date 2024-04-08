@@ -48,7 +48,7 @@ PlayerHand <- R6Class("PlayerHand",
      
         },
 
-        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer, timeToPlay) {
+        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer, timeToPlay, player_name) {
 
             self$verifyWin()
 
@@ -57,7 +57,17 @@ PlayerHand <- R6Class("PlayerHand",
                 stop("O jogo terminou!")
             }
 
-            var <- as.integer(readline(prompt="Digite o número da linha: "))
+            if(self$name != player_name){
+
+                var <- self$IA(DiscartStackTop)
+                print(self$cards[var,])
+                Sys.sleep(5)
+
+            }  else{
+
+                var <- as.integer(readline(prompt="Digite o número da linha: "))
+
+            }
 
             if(var == 0){
 
@@ -196,20 +206,27 @@ PlayerHand <- R6Class("PlayerHand",
         },
 
         IA = function(DiscardStackTop) {
-            validas <- which(self$cards[,1] == DiscardStackTop[1] || self$cards[,2] == DiscardStackTop[2])
-            especiais <- which(self$cards[,2] %in% c("+2", "+4", "Block", "Reverse", "trocaCor"))
+        validas <- which(self$cards[1, 1] == DiscardStackTop[1] || self$cards[2, 1] == DiscardStackTop[2])
+        especiais <- which((self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "+2") |
+                        (self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "Block") |
+                        (self$cards[, 1] == DiscardStackTop[1] & self$cards[, 2] == "Reverse") |
+                        self$cards[, 2] %in% c("+4", "trocaCor"))
 
             if (length(especiais) > 0) {
-                return(self$playCard(self$cards[especiais[1],], DiscardStackTop))
+                print("especiais")
+                print(especiais[1])
+                Sys.sleep(5)
+                return(especiais[1])
             }
 
             if (length(validas) > 0) {
-                return(self$playCard(self$cards[validas[1],], DiscardStackTop))
+                print("validas")
+                print(validas[1])
+                Sys.sleep(5)
+                return(validas[1])
             }
 
-
-            self$drawCard(deck, 1, discardStack)
-            return(NULL)
+            return(0)
         }
     )
 )

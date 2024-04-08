@@ -50,7 +50,7 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -90,7 +90,7 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -145,7 +145,7 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
@@ -186,7 +186,7 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
