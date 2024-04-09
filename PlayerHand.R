@@ -49,14 +49,7 @@ PlayerHand <- R6Class("PlayerHand",
      
         },
 
-        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer, timeToPlay, player_name) {
-
-            self$verifyWin()
-
-            if (self$verifyWin() == TRUE) {
-
-                stop("O jogo terminou!")
-            }
+        playCard = function(DiscartStackTop, deck, discardStack, nextPlayer, timeToPlay, player_name, cardThisTurn) {
 
             print("================================")
 
@@ -94,12 +87,15 @@ PlayerHand <- R6Class("PlayerHand",
                     if(self$name != player_name){
 
                         actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay, TRUE)
-                    
+                        
+
                     } else{
 
                         actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay, FALSE)
-                    
+                        
+
                     }
+                
                 }
                 
                 if(self$cards[var, 2] == "Block"){
@@ -127,9 +123,26 @@ PlayerHand <- R6Class("PlayerHand",
             
         },
 
-        blockCard = function(timeToPlay){
-            timeToPlay <- timeToPlay + 1;
-            return(timeToPlay)
+        blockCard = function(timeToPlay, order){
+            if(order == 1){
+                if(timeToPlay == 3){
+                    timeToPlay <- 1
+                    return(timeToPlay)
+                } else{
+                    timeToPlay <- timeToPlay + 1;
+                    return(timeToPlay)
+                }
+                
+            } 
+            if(order == -1){
+                if(timeToPlay == 2){
+                    timeToPlay <- 1;
+                    return(timeToPlay)
+                } else{
+                    timeToPlay <- timeToPlay - 1;
+                    return(timeToPlay)
+                }
+            }
         },
 
         reverseCard = function(order){
@@ -203,7 +216,7 @@ PlayerHand <- R6Class("PlayerHand",
                 return(actionOfTheCard);
               },
               "Block" = {
-                timeToPlay <- self$blockCard(timeToPlay);
+                timeToPlay <- self$blockCard(timeToPlay, order);
                 return(timeToPlay)
               },
               "Reverse" = {
@@ -215,19 +228,6 @@ PlayerHand <- R6Class("PlayerHand",
                 return(carta);
               }
             )
-        },
-
-        verifyWin = function(){
-            if (nrow(self$cards)==0){
-                return(TRUE)
-            }
-            else if (nrow(self$cards)==1) {
-                print("UNO !!!")
-                return(FALSE)
-            }
-            else {
-                return(FALSE)
-            }   
         },
 
         IA = function(DiscardStackTop) {

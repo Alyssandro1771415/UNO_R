@@ -39,19 +39,13 @@ while(board$Winner == FALSE){
 
         nextPlayer <- NULL;
 
-        if(timeToPlay+1 > 3){
-            nextPlayer <- 1
-        } else{
-            nextPlayer <- timeToPlay+1
-        }
-
         if(class(board$DiscartStackTop) == "list"){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
-            
+
             board$addCardToDiscartStack(discartedCard)
             board$verifyTopDiscartStack()
 
@@ -85,6 +79,8 @@ while(board$Winner == FALSE){
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
             }
+
+            board$verifyWin(nrow(players[[timeToPlay]]$cards))
 
             if(timeToPlay >= 4){
                 timeToPlay <- 1;
@@ -137,6 +133,8 @@ while(board$Winner == FALSE){
                 board$DiscartStackTop <- discartedCard[[2]]
             }
 
+            board$verifyWin(nrow(players[[timeToPlay]]$cards))
+
             if(timeToPlay >= 4){
                 timeToPlay <- 1;
             } else{
@@ -152,12 +150,6 @@ while(board$Winner == FALSE){
     if(order == -1){
 
         nextPlayer <- NULL
-
-        if(timeToPlay-1 < 1){
-            nextPlayer <- 4
-        } else{
-            nextPlayer <- timeToPlay-1
-        }
 
         if(class(board$DiscartStackTop) == "list"){
             
@@ -199,6 +191,8 @@ while(board$Winner == FALSE){
             if((names(discartedCard))[2] == "specialActionChangeColor"){
                 board$DiscartStackTop <- discartedCard[[2]]
             }
+
+            board$verifyWin(nrow(players[[timeToPlay]]$cards))
 
             if(timeToPlay <= 1){
                 timeToPlay <- 4;
@@ -249,15 +243,12 @@ while(board$Winner == FALSE){
                 board$DiscartStackTop <- discartedCard[[2]]
             }
 
+            board$verifyWin(nrow(players[[timeToPlay]]$cards))
+
             if(timeToPlay <= 1){
                 timeToPlay <- 4;
             } else{
                 timeToPlay <- timeToPlay - 1;
-            }
-
-            board$Winner <- players[[timeToPlay]]$verifyWin();
-            if(nrow(players[[timeToPlay]]) == 1){
-                Sys.sleep(3)
             }
 
             system("clear")

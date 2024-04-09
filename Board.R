@@ -19,7 +19,22 @@ Board <- R6Class("Board",
     addCardToDiscartStack = function(carta = NA){
       self$DiscartStack <- rbind(self$DiscartStack, carta)
       self$verifyTopDiscartStack()
-    }
+    },
 
+    verifyWin = function(quantCards){
+      if (class(quantCards) == "NULL"){
+        print("---!Vitŕoia!---")
+        Sys.sleep(5)
+        self$Winner <- TRUE
+      }
+      if (quantCards == 1) {
+        print("UNO !!!")
+        Sys.sleep(5)
+        self$Winner <- FALSE
+      }
+      else {
+        self$Winner <- FALSE
+      }   
+    }
   )
 )

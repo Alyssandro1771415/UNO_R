@@ -10,42 +10,38 @@ Deck <- R6Class("Deck",
     initialize = function() {
 
       self$cards <- matrix(c(
-        "Azul", 0,
-        "Amarelo", 0,
-        "Vermelho", 0,
-        "Verde", 0,
-        "Azul", "Reverse",
-        "Azul", "Reverse",
-        "Verde", "Reverse",
-        "Verde", "Reverse",
-        "Vermelho", "Reverse",
-        "Vermelho", "Reverse",
-        "Amarelo", "Reverse",
-        "Amarelo", "Reverse",
-        "Azul", "Block",
-        "Azul", "Block",
-        "Verde", "Block",
-        "Verde", "Block",
-        "Vermelho", "Block",
-        "Vermelho", "Block",
-        "Amarelo", "Block",
-        "Amarelo", "Block",
-        "Azul", "+2",
-        "Azul", "+2",
-        "Verde", "+2",
-        "Verde", "+2",
-        "Vermelho", "+2",
-        "Vermelho", "+2",
-        "Amarelo", "+2",
-        "Amarelo", "+2",
-        "Preto", "+4",
-        "Preto", "+4",
-        "Preto", "+4",
-        "Preto", "+4",
-        "Preto", "trocaCor",
-        "Preto", "trocaCor",
-        "Preto", "trocaCor",
-        "Preto", "trocaCor"
+        "Azul", "Reverse"
+        ,"Azul", "Reverse"
+        ,"Verde", "Reverse"
+        ,"Verde", "Reverse"
+        ,"Vermelho", "Reverse"
+        ,"Vermelho", "Reverse"
+        ,"Amarelo", "Reverse"
+        ,"Amarelo", "Reverse"
+        #,"Azul"#, "Block"
+        #,"Azul"#, "Block"
+        #,"Verde"#, "Block"
+        #,"Verde"#, "Block"
+        #,"Vermelho"#, "Block"
+        #,"Vermelho"#, "Block"
+        #,"Amarelo"#, "Block"
+        #,"Amarelo"#, "Block"
+        #,"Azul"#, "+2"
+        #, "Azul"#, "+2"
+        #,"Verde"#, "+2"
+        #,"Verde"#, "+2"
+        #,"Vermelho"#, "+2"
+        #,"Vermelho"#, "+2"
+        #,"Amarelo"#, "+2"
+        #,"Amarelo"#, "+2"
+        #,"Preto"#, "+4"
+        #,"Preto"#, "+4"
+        #,"Preto"#, "+4"
+        #,"Preto"#, "+4"
+        #,"Preto"#, "trocaCor"
+        #,"Preto"#, "trocaCor"
+        #,"Preto"#, "trocaCor"
+        #,"Preto"#, "trocaCor"
       ), ncol = 2, byrow = TRUE)
     },
     
@@ -54,7 +50,7 @@ Deck <- R6Class("Deck",
       cores <- c("Azul", "Vermelho", "Verde", "Amarelo") 
 
       # Números disponíveis
-      numeros <- 1:9
+      numeros <- 0:9
 
       # Loop para criar todas as cartas
       for (i in 1:2) {
