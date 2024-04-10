@@ -23,7 +23,7 @@ Board <- R6Class("Board",
 
     verifyWin = function(quantCards){
       if (class(quantCards) == "NULL"){
-        print("---!Vitŕoia!---")
+        print("---!Vitória!---")
         Sys.sleep(5)
         self$Winner <- TRUE
       }
