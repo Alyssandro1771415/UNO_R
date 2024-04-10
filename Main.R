@@ -36,21 +36,29 @@ order <- 1;
 while(board$Winner == FALSE){
 
     if(order == 1){
-
+    
+    # Caso de erro na block ou reverse, rever isso!!!
         nextPlayer <- NULL;
+        if(timeToPlay >= 4){
+            nextPlayer <- players[[1]]
+        } else{
+            nextPlayer <- players[[timeToPlay+1]]
+        }
 
         if(class(board$DiscartStackTop) == "list"){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
 
             board$addCardToDiscartStack(discartedCard)
 
             if(class(discartedCard) == "NULL"){
 
+                print(board$DiscardStackTop[[2]])
                 board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                Sys.sleep(4)
 
                 if(timeToPlay >= 4){
                     timeToPlay <- 1;
@@ -102,13 +110,14 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
 
 
             if(class(discartedCard) == "NULL"){
 
+                print(board$DiscardStackTop[[2]])
                 board$setTopDiscartStack(board$DiscartStackTop[[2]])
 
                 if(timeToPlay >= 4){
@@ -161,21 +170,29 @@ while(board$Winner == FALSE){
 
     if(order == -1){
 
-        nextPlayer <- NULL
+        # Caso de erro na block ou reverse, rever isso!!!
+        nextPlayer <- NULL;
+        if(timeToPlay <= 1){
+            nextPlayer <- players[[4]]
+        } else{
+            nextPlayer <- players[[timeToPlay-1]]
+        }
 
         if(class(board$DiscartStackTop) == "list"){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
 
 
             if(class(discartedCard) == "NULL"){
 
+                print(board$DiscardStackTop[[2]])
                 board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                Sys.sleep(4)
 
                 if(timeToPlay <= 1){
                     timeToPlay <- 3;
@@ -226,13 +243,15 @@ while(board$Winner == FALSE){
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
             print(players[[timeToPlay]]$cards);
-            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
+            discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
 
             if(class(discartedCard) == "NULL"){
 
+                print(board$DiscardStackTop[[2]])
                 board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                Sys.sleep(4)
 
                 if(timeToPlay <= 1){
                     timeToPlay <- 3;
@@ -281,5 +300,4 @@ while(board$Winner == FALSE){
 
         }
     }
-
 }

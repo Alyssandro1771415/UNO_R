@@ -17,7 +17,6 @@ Board <- R6Class("Board",
     },
 
     setTopDiscartStack = function(carta = NA){
-      
 
       self$DiscartStackTop <- carta
 
