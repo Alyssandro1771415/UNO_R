@@ -134,13 +134,6 @@ while(board$Winner == FALSE){
 
             }
 
-
-            if((names(discartedCard))[2] == "specialActionBlock"){
-                timeToPlay <- discartedCard[[2]]
-                if(timeToPlay >= 4){
-                    timeToPlay <- 1
-                }
-            }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 if(timeToPlay == 1){
                     order <- discartedCard[[2]]
@@ -208,12 +201,6 @@ while(board$Winner == FALSE){
 
             }
 
-            if((names(discartedCard))[2] == "specialActionBlock"){
-                timeToPlay <- discartedCard[[2]]
-                if(timeToPlay <= 1){
-                    timeToPlay <- 4
-                }
-            }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 if(timeToPlay == 4){
                     order <- discartedCard[[2]]
