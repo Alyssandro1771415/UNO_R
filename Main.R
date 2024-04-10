@@ -49,7 +49,7 @@ while(board$Winner == FALSE){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
-            print(players[[timeToPlay]]$cards);
+            print(players[[timeToPlay]]$cards[1:(nrow(players[[timeToPlay]]$cards) - 1), ])
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
 
             board$addCardToDiscartStack(discartedCard)
@@ -109,7 +109,7 @@ while(board$Winner == FALSE){
 
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
-            print(players[[timeToPlay]]$cards);
+            print(players[[timeToPlay]]$cards[1:(nrow(players[[timeToPlay]]$cards) - 1), ])
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
@@ -175,7 +175,7 @@ while(board$Winner == FALSE){
             
             print(board$DiscartStackTop[[1]]);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
-            print(players[[timeToPlay]]$cards);
+            print(players[[timeToPlay]]$cards[1:(nrow(players[[timeToPlay]]$cards) - 1), ])
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
@@ -229,7 +229,7 @@ while(board$Winner == FALSE){
 
             print(board$DiscartStackTop);
             print(paste0("-----------", players[[timeToPlay]]$name, "------------"));
-            print(players[[timeToPlay]]$cards);
+            print(players[[timeToPlay]]$cards[1:(nrow(players[[timeToPlay]]$cards) - 1), ])
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, nextPlayer, timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)

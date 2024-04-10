@@ -42,30 +42,6 @@ Deck <- R6Class("Deck",
         ,"Preto", "trocaCor"
         ,"Preto", "trocaCor"
         ,"Preto", "trocaCor"
-        ,"Azul", "Block"
-        ,"Azul", "Block"
-        ,"Verde", "Block"
-        ,"Verde", "Block"
-        ,"Vermelho", "Block"
-        ,"Vermelho", "Block"
-        ,"Amarelo", "Block"
-        ,"Amarelo", "Block"
-        ,"Azul", "+2"
-        , "Azul", "+2"
-        ,"Verde", "+2"
-        ,"Verde", "+2"
-        ,"Vermelho", "+2"
-        ,"Vermelho", "+2"
-        ,"Amarelo", "+2"
-        ,"Amarelo", "+2"
-        ,"Preto", "+4"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "trocaCor"
-        #,"Preto"#, "trocaCor"
-        #,"Preto"#, "trocaCor"
-        #,"Preto"#, "trocaCor"
       ), ncol = 2, byrow = TRUE)
     },
     
@@ -99,17 +75,19 @@ Deck <- R6Class("Deck",
     toDistributeCards = function(player_1 = NA, player_2 = NA, player_3 = NA, player_4 = NA) {
 
       players <- c(player_1, player_2, player_3, player_4);
-        
+      UNOCard <- c("UNO", "UNO")
+
       for(player in players){
       
         cartas <- self$cards[1:7, ]
+        cartas <- rbind(cartas, UNOCard[[2]])
 
         player$cards <- cartas
 
         for(i in 1:7){
           self$cards <- self$cards[-1,]
         }
-        
+
       }
     },
 
