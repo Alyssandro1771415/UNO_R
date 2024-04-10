@@ -126,7 +126,7 @@ PlayerHand <- R6Class("PlayerHand",
         blockCard = function(timeToPlay, order){
             if(order == 1){
                 if(timeToPlay == 3){
-                    timeToPlay <- 1
+                    timeToPlay <- 1;
                     return(timeToPlay)
                 } else{
                     timeToPlay <- timeToPlay + 1;
@@ -136,7 +136,7 @@ PlayerHand <- R6Class("PlayerHand",
             } 
             if(order == -1){
                 if(timeToPlay == 2){
-                    timeToPlay <- 1;
+                    timeToPlay <- 4;
                     return(timeToPlay)
                 } else{
                     timeToPlay <- timeToPlay - 1;
