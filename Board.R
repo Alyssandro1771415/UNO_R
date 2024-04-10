@@ -33,7 +33,7 @@ Board <- R6Class("Board",
         Sys.sleep(5)
         self$Winner <- TRUE
       }
-      if (quantCards == 1) {
+      if (quantCards == 2) {
         print("UNO !!!")
         Sys.sleep(5)
         self$Winner <- FALSE
