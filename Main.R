@@ -77,7 +77,6 @@ while(board$Winner == FALSE){
                 }
 
                 system("clear")
-                print(timeToPlay); print("bloco 7");Sys.sleep(5)
                 next;   
             }  else{
 
@@ -114,8 +113,7 @@ while(board$Winner == FALSE){
                 timeToPlay <- timeToPlay + 1;
             }
 
-            system("clear")
-            print(timeToPlay); print("bloco 2");Sys.sleep(5)
+            system("clear"
             next;
 
         } else{
@@ -148,7 +146,6 @@ while(board$Winner == FALSE){
                 }
 
                 system("clear")
-                print(timeToPlay); print("bloco 8");Sys.sleep(5)
                 next;   
             }  else{
 
@@ -233,7 +230,6 @@ while(board$Winner == FALSE){
                 }
 
                 system("clear")
-                print(timeToPlay); print("bloco 9");Sys.sleep(5)
                 next;   
             }  else{
 
@@ -269,8 +265,7 @@ while(board$Winner == FALSE){
                 timeToPlay <- timeToPlay - 1;
             }
 
-            system("clear")
-            print(timeToPlay); print("bloco 4");Sys.sleep(5)
+            system("clear"
             next;
 
         } else{
@@ -303,7 +298,6 @@ while(board$Winner == FALSE){
                 }
 
                 system("clear")
-                print(timeToPlay); print("bloco 5");Sys.sleep(5)
                 next;   
             }  else{
 
@@ -339,8 +333,7 @@ while(board$Winner == FALSE){
                 timeToPlay <- timeToPlay - 1;
             }
 
-            system("clear")
-            print(timeToPlay); print("bloco 6");Sys.sleep(5)
+            system("clear"
             next;
 
         }
