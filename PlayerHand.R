@@ -31,7 +31,7 @@ PlayerHand <- R6Class("PlayerHand",
                     system("clear")
                     paste0("-----------", players[[timeToPlay]]$name, "------------")
                     print("Mão atual:")
-                    print(self$cards)
+                    print(self$cards[1:(nrow(self$cards)-1),])
                     Sys.sleep(3)   
                 },
                 "2" = {
@@ -133,7 +133,7 @@ PlayerHand <- R6Class("PlayerHand",
                     return(timeToPlay)
                 }
                 
-            } 
+            }
             if(order == -1){
                 if(timeToPlay == 2){
                     timeToPlay <- 4;

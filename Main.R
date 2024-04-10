@@ -56,9 +56,11 @@ while(board$Winner == FALSE){
 
             if(class(discartedCard) == "NULL"){
 
-                print(board$DiscardStackTop[[2]])
-                board$setTopDiscartStack(board$DiscartStackTop[[2]])
-                Sys.sleep(4)
+                if(class(board$DiscartStackTop[[2]]) == "NULL"){
+                    board$setTopDiscartStack(board$DiscartStackTop)
+                } else{
+                    board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                }
 
                 if(timeToPlay >= 4){
                     timeToPlay <- 1;
@@ -75,8 +77,7 @@ while(board$Winner == FALSE){
             }
 
             if((names(discartedCard))[2] == "specialActionBlock"){
-                timeToPlay <- discartedCard[[2]]
-                if(timeToPlay >= 4){
+                if(discartedCard[[2]] >= 4){
                     timeToPlay <- 1
                 }
             }
@@ -114,11 +115,13 @@ while(board$Winner == FALSE){
             
             board$addCardToDiscartStack(discartedCard)
 
-
             if(class(discartedCard) == "NULL"){
 
-                print(board$DiscardStackTop[[2]])
-                board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                if(class(board$DiscartStackTop[[2]]) == "NULL"){
+                    board$setTopDiscartStack(board$DiscartStackTop)
+                } else{
+                    board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                }
 
                 if(timeToPlay >= 4){
                     timeToPlay <- 1;
@@ -133,7 +136,11 @@ while(board$Winner == FALSE){
                 board$verifyTopDiscartStack();
 
             }
-
+            if((names(discartedCard))[2] == "specialActionBlock"){
+                if(discartedCard[[2]] >= 4){
+                    timeToPlay <- 1
+                }
+            }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 if(timeToPlay == 1){
                     order <- discartedCard[[2]]
@@ -183,9 +190,11 @@ while(board$Winner == FALSE){
 
             if(class(discartedCard) == "NULL"){
 
-                print(board$DiscardStackTop[[2]])
-                board$setTopDiscartStack(board$DiscartStackTop[[2]])
-                Sys.sleep(4)
+                if(class(board$DiscartStackTop[[2]]) == "NULL"){
+                    board$setTopDiscartStack(board$DiscartStackTop)
+                } else{
+                    board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                }
 
                 if(timeToPlay <= 1){
                     timeToPlay <- 3;
@@ -200,7 +209,11 @@ while(board$Winner == FALSE){
                 board$verifyTopDiscartStack();
 
             }
-
+            if((names(discartedCard))[2] == "specialActionBlock"){
+                if(discartedCard[[2]] <= 1){
+                    timeToPlay <- 4
+                }
+            }
             if((names(discartedCard))[2] == "specialActionReverse"){
                 if(timeToPlay == 4){
                     order <- discartedCard[[2]]
@@ -236,9 +249,11 @@ while(board$Winner == FALSE){
 
             if(class(discartedCard) == "NULL"){
 
-                print(board$DiscardStackTop[[2]])
-                board$setTopDiscartStack(board$DiscartStackTop[[2]])
-                Sys.sleep(4)
+                if(class(board$DiscartStackTop[[2]]) == "NULL"){
+                    board$setTopDiscartStack(board$DiscartStackTop)
+                } else{
+                    board$setTopDiscartStack(board$DiscartStackTop[[2]])
+                }
 
                 if(timeToPlay <= 1){
                     timeToPlay <- 3;
@@ -256,8 +271,7 @@ while(board$Winner == FALSE){
  
 
             if((names(discartedCard))[2] == "specialActionBlock"){
-                timeToPlay <- discartedCard[[2]]
-                if(timeToPlay <= 1){
+                if(discartedCard[[2]] <= 1){
                     timeToPlay <- 4
                 }
             }
