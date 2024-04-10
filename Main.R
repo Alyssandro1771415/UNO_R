@@ -76,7 +76,7 @@ while(board$Winner == FALSE){
                     timeToPlay <- timeToPlay + 1;
                 }
 
-                system("clear")
+                system("clear"))
                 next;   
             }  else{
 
@@ -113,7 +113,7 @@ while(board$Winner == FALSE){
                 timeToPlay <- timeToPlay + 1;
             }
 
-            system("clear"
+            system("clear")
             next;
 
         } else{
@@ -145,7 +145,7 @@ while(board$Winner == FALSE){
                     timeToPlay <- timeToPlay + 1;
                 }
 
-                system("clear")
+                system("clear"))
                 next;   
             }  else{
 
@@ -229,7 +229,7 @@ while(board$Winner == FALSE){
                     timeToPlay <- timeToPlay - 1;
                 }
 
-                system("clear")
+                system("clear"))
                 next;   
             }  else{
 
@@ -265,7 +265,7 @@ while(board$Winner == FALSE){
                 timeToPlay <- timeToPlay - 1;
             }
 
-            system("clear"
+            system("clear")
             next;
 
         } else{
@@ -297,7 +297,7 @@ while(board$Winner == FALSE){
                     timeToPlay <- timeToPlay - 1;
                 }
 
-                system("clear")
+                system("clear"))
                 next;   
             }  else{
 
@@ -333,7 +333,7 @@ while(board$Winner == FALSE){
                 timeToPlay <- timeToPlay - 1;
             }
 
-            system("clear"
+            system("clear")
             next;
 
         }
