@@ -16,6 +16,13 @@ Board <- R6Class("Board",
       self$DiscartStackTop <- self$DiscartStack[nrow(self$DiscartStack),]
     },
 
+    setTopDiscartStack = function(carta = NA){
+      
+
+      self$DiscartStackTop <- carta
+
+    },
+
     addCardToDiscartStack = function(carta = NA){
       self$DiscartStack <- rbind(self$DiscartStack, carta)
       self$verifyTopDiscartStack()

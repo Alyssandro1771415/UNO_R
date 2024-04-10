@@ -66,7 +66,9 @@ PlayerHand <- R6Class("PlayerHand",
             }
 
             if(as.integer(var) > nrow(self$cards)){
+
                 var <- as.integer(readline(prompt="Carta inválida! Digite o número da linha: "))
+            
             }
 
             if(var == 0){
@@ -88,12 +90,10 @@ PlayerHand <- R6Class("PlayerHand",
 
                         actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay, TRUE)
                         
-
                     } else{
 
                         actionOfTheCard <- self$useSpecialCard(self$cards[var,], deck, discardStack, nextPlayer, timeToPlay, FALSE)
                         
-
                     }
                 
                 }

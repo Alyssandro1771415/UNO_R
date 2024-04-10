@@ -10,23 +10,23 @@ Deck <- R6Class("Deck",
     initialize = function() {
 
       self$cards <- matrix(c(
-        "Azul", "Reverse"
-        ,"Azul", "Reverse"
-        ,"Verde", "Reverse"
-        ,"Verde", "Reverse"
-        ,"Vermelho", "Reverse"
-        ,"Vermelho", "Reverse"
-        ,"Amarelo", "Reverse"
-        ,"Amarelo", "Reverse"
-        #,"Azul"#, "Block"
-        #,"Azul"#, "Block"
-        #,"Verde"#, "Block"
-        #,"Verde"#, "Block"
-        #,"Vermelho"#, "Block"
-        #,"Vermelho"#, "Block"
-        #,"Amarelo"#, "Block"
-        #,"Amarelo"#, "Block"
-        #,"Azul"#, "+2"
+        #"Azul", "Reverse"
+        #,"Azul", "Reverse"
+        #,"Verde", "Reverse"
+        #,"Verde", "Reverse"
+        #,"Vermelho", "Reverse"
+        #,"Vermelho", "Reverse"
+        #,"Amarelo", "Reverse"
+        #,"Amarelo", "Reverse"
+        #"Azul", "Block"
+        #,"Azul", "Block"
+        #,"Verde", "Block"
+        #,"Verde", "Block"
+        #,"Vermelho", "Block"
+        #,"Vermelho", "Block"
+        #,"Amarelo", "Block"
+        #,"Amarelo", "Block"
+        #,"Azul", "+2"
         #, "Azul"#, "+2"
         #,"Verde"#, "+2"
         #,"Verde"#, "+2"
@@ -34,20 +34,20 @@ Deck <- R6Class("Deck",
         #,"Vermelho"#, "+2"
         #,"Amarelo"#, "+2"
         #,"Amarelo"#, "+2"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "+4"
-        #,"Preto"#, "trocaCor"
-        #,"Preto"#, "trocaCor"
-        #,"Preto"#, "trocaCor"
-        #,"Preto"#, "trocaCor"
+        #,"Preto", "+4"
+        #,"Preto", "+4"
+        #,"Preto", "+4"
+        #,"Preto", "+4"
+        "Preto", "trocaCor"
+        ,"Preto", "trocaCor"
+        ,"Preto", "trocaCor"
+        ,"Preto", "trocaCor"
       ), ncol = 2, byrow = TRUE)
     },
     
     generateDeck = function() {
       # Cores disponíveis
-      cores <- c("Azul", "Vermelho", "Verde", "Amarelo") 
+      cores <- c("Vermelho", "Verde", "Amarelo") 
 
       # Números disponíveis
       numeros <- 0:9

@@ -47,17 +47,23 @@ while(board$Winner == FALSE){
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
 
             board$addCardToDiscartStack(discartedCard)
-            board$verifyTopDiscartStack()
 
             if(class(discartedCard) == "NULL"){
+
+                board$setTopDiscartStack(board$DiscartStackTop[[2]])
 
                 if(timeToPlay >= 4){
                     timeToPlay <- 1;
                 } else{
                     timeToPlay <- timeToPlay + 1;
                 }
+
                 system("clear")
                 next;   
+            }  else{
+
+                board$verifyTopDiscartStack();
+
             }
 
             if((names(discartedCard))[2] == "specialActionBlock"){
@@ -99,18 +105,24 @@ while(board$Winner == FALSE){
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
-            board$verifyTopDiscartStack()
 
 
             if(class(discartedCard) == "NULL"){
+
+                board$setTopDiscartStack(board$DiscartStackTop[[2]])
 
                 if(timeToPlay >= 4){
                     timeToPlay <- 1;
                 } else{
                     timeToPlay <- timeToPlay + 1;
                 }
+
                 system("clear")
                 next;   
+            }  else{
+
+                board$verifyTopDiscartStack();
+
             }
 
 
@@ -159,18 +171,24 @@ while(board$Winner == FALSE){
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop[[1]], deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
-            board$verifyTopDiscartStack()
 
 
             if(class(discartedCard) == "NULL"){
+
+                board$setTopDiscartStack(board$DiscartStackTop[[2]])
 
                 if(timeToPlay <= 1){
                     timeToPlay <- 3;
                 } else{
                     timeToPlay <- timeToPlay - 1;
                 }
+
                 system("clear")
                 next;   
+            }  else{
+
+                board$verifyTopDiscartStack();
+
             }
 
             if((names(discartedCard))[2] == "specialActionBlock"){
@@ -211,18 +229,25 @@ while(board$Winner == FALSE){
             discartedCard <- players[[timeToPlay]]$playCard(board$DiscartStackTop, deck, board$DiscartStack, players[[nextPlayer]], timeToPlay, playerName);
             
             board$addCardToDiscartStack(discartedCard)
-            board$verifyTopDiscartStack()
 
             if(class(discartedCard) == "NULL"){
 
+                board$setTopDiscartStack(board$DiscartStackTop[[2]])
+
                 if(timeToPlay <= 1){
-                    timeToPlay <- 4;
+                    timeToPlay <- 3;
                 } else{
                     timeToPlay <- timeToPlay - 1;
                 }
-                next;   
-            }
 
+                system("clear")
+                next;   
+            }  else{
+
+                board$verifyTopDiscartStack();
+
+            }
+ 
 
             if((names(discartedCard))[2] == "specialActionBlock"){
                 timeToPlay <- discartedCard[[2]]
